@@ -24,7 +24,7 @@ export const People = sequelize.define('people', {
     allowNull: false
   },
   tel: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false
   },
   bairro: {
@@ -32,7 +32,7 @@ export const People = sequelize.define('people', {
     allowNull: false
   },
   cep: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     allowNull: false
   },
   localidade: {
