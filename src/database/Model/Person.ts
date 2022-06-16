@@ -3,7 +3,7 @@ import { sequelize } from '../config'
 
 export const People = sequelize.define('people', {
   cpf: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     primaryKey: true,
     allowNull: false
   },
@@ -24,7 +24,7 @@ export const People = sequelize.define('people', {
     allowNull: false
   },
   tel: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     allowNull: false
   },
   bairro: {
@@ -48,7 +48,7 @@ export const People = sequelize.define('people', {
     allowNull: false
   },
   numero: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     allowNull: false
   }
 }, { timestamps: false })
