@@ -7,9 +7,9 @@ interface userProps {
     nasc: string
     cpf: number
     email: string
-    tel: number
+    tel: string
     bairro: string
-    cep: string
+    cep: number
     localidade: string
     logradouro: string
     uf: string
@@ -22,7 +22,7 @@ export class Person {
         const { cpf } = req.body
 
         try {
-            const db = await People.findAll({ where: { cpf: cpf } })
+            const db = await People.findAll({ where: { cpf: Number(cpf) } })
             if (db.length === 0) {
                 Person.createNewPerson({ ...req.body })
             } else {
@@ -39,9 +39,9 @@ export class Person {
     static async createNewPerson({ nome, sobrenome, nasc, cpf, email, tel, bairro,
         cep, localidade, logradouro, uf, numero }: userProps) {
         await People.create({ 
-            cpf: cpf, nome: nome, sobrenome: sobrenome, nasc: nasc,
-            email: email, tel: tel, bairro: bairro, cep: cep,
-            localidade: localidade, logradouro: logradouro, uf: uf, numero: numero
+            cpf: Number(cpf), nome: nome, sobrenome: sobrenome, nasc: nasc,
+            email: email, tel: tel, bairro: bairro, cep: Number(cep),
+            localidade: localidade, logradouro: logradouro, uf: uf, numero: Number(numero)
         })
     }
 
