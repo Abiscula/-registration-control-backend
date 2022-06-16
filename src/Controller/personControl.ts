@@ -5,15 +5,15 @@ interface userProps {
     nome: string
     sobrenome: string
     nasc: string
-    cpf: string
+    cpf: number
     email: string
-    tel: string
+    tel: number
     bairro: string
     cep: string
     localidade: string
     logradouro: string
     uf: string
-    numero: string
+    numero: number
 }
 
 export class Person {
@@ -29,7 +29,7 @@ export class Person {
                 return res.json({ message: 'cpf já cadastrado em nosso banco de dados' })
             }
 
-            return res.status(201).json(db)
+            return res.status(200).json(db)
         } catch (err) {
             console.log(err)
             return res.status(400).json(err)
@@ -44,4 +44,7 @@ export class Person {
             localidade: localidade, logradouro: logradouro, uf: uf, numero: numero
         })
     }
+
+
+    //Criar metodo para recuperar os dados de person
 }
