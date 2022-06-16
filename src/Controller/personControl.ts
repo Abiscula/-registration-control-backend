@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { json } from 'sequelize/types';
 import { People } from '../database/Model/Person';
 
 interface userProps {
@@ -46,5 +47,24 @@ export class Person {
     }
 
 
-    //Criar metodo para recuperar os dados de person
+    static async getAllPeople(req: Request, res: Response) {
+        try {
+            const db = await (await People.findAll({attributes: ['nome', 'sobrenome', 'cpf']}))
+            res.status(200).json(db)
+        }catch(err) {
+            return res.status(400).json({message: 'Não existem usuários cadastrados no banco'})
+        }
+
+    }
+
+    static async getPerson(req: Request, res: Response) {
+        const { cpf } = req.params
+        console.log(cpf)
+        try {
+            const db = await People.findAll({ where: { cpf: Number(cpf) } })
+            res.status(200).json(db)
+        }catch(err) {
+            return res.status(400).json({message: 'Não existem usuários cadastrados no banco'})
+        }
+    }
 }
